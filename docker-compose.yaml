@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   wordpress:
-    container_name: wordpress-web
+    container_name: cms-wordpress-web
     image: wordpress
     restart: always
     ports:
@@ -14,10 +14,10 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - wordpress-web:/var/www/html
+      - cms-wordpress-web:/var/www/html
 
   db:
-    container_name: wordpress-db
+    container_name: cms-wordpress-db
     image: mysql:5.7
     restart: always
     environment:
@@ -26,8 +26,10 @@ services:
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - wordpress-db:/var/lib/mysql
-
+      - ./wordpress/db/conf.d/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./wordpress/db/initdb:/docker-entrypoint-initdb.d/:ro
+      # - ./wordpress/db/data:/var/lib/mysql
+      - cms-wordpress-db:/var/lib/mysql
 volumes:
-  wordpress-web:
-  wordpress-db:
+  cms-wordpress-web:
+  cms-wordpress-db:
