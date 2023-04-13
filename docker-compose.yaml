@@ -4,7 +4,10 @@ services:
 
   wordpress:
     container_name: cms-wordpress-web
-    image: wordpress
+    image: gekal/wordpress:php8.2-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     ports:
       - 8080:80

@@ -10,8 +10,8 @@ docker-compose up -d
 
 ### サーバーアクセス
 
-ホームページ： <http://localhost:8080/>
-ホームページ： <http://localhost:8080/wp-login.php>
+ホームページ： <http://localhost/>
+ホームページ： <http://localhost/wp-login.php>
 
 ## 参照
 
